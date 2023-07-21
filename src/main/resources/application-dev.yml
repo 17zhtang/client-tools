@@ -1,5 +1,7 @@
 server:
   port: 8800
+  servlet:
+    context-path: /client-tools
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 查看日志

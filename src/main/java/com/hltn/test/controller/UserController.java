@@ -1,10 +1,12 @@
 package com.hltn.test.controller;
 
 import com.hltn.test.common.result.Result;
+import com.hltn.test.dto.resp.GetUerInfoRespDto;
+import com.hltn.test.entity.UserGroup;
 import com.hltn.test.entity.User;
+import com.hltn.test.service.UserGroupService;
 import com.hltn.test.service.UserService;
 import io.swagger.annotations.Api;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserGroupService userGroupService;
 
     @PostMapping("/add")
     public Result saveUser(@RequestBody User user){
@@ -33,8 +38,14 @@ public class UserController {
     }
 
     @GetMapping("get/{id}")
-    public Result getUser(@PathVariable int id){
+    public Result getUserInfo(@PathVariable int id){
+        GetUerInfoRespDto getUerInfoRespDto = new GetUerInfoRespDto();
         User user = userService.getById(id);
-        return Result.ok(user);
+        UserGroup group = userGroupService.getById(user.getGroupId());
+        getUerInfoRespDto.setId(user.getId());
+        getUerInfoRespDto.setAccount(user.getAccount());
+        getUerInfoRespDto.setName(user.getName());
+        getUerInfoRespDto.setGroupName(group.getGroupName());
+        return Result.ok(getUerInfoRespDto);
     }
 }
