@@ -5,11 +5,12 @@ import lombok.Data;
 
 @Data
 public class GetDevicesReqDto {
-    @ApiModelProperty(value = "拥有者ID")
-    private Long ownerId;
 
-    @ApiModelProperty(value = "拥有者所在组ID")
-    private Long userGroupId;
+    @ApiModelProperty(value = "拥有者姓名")
+    private String ownerName;
+
+    @ApiModelProperty(value = "拥有者所在组")
+    private String userGroup;
 
     @ApiModelProperty(value = "型号")
     private String model;

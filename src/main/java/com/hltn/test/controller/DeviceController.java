@@ -8,8 +8,11 @@ import com.hltn.test.dto.resp.GetDevicesRespDto;
 import com.hltn.test.entity.Device;
 import com.hltn.test.service.DeviceService;
 import com.hltn.test.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/device")
@@ -27,10 +30,11 @@ public class DeviceController {
         return Result.ok(device);
     }
 
+    @ApiOperation("测试设备条件分页查询")
     @PostMapping("/page")
-    public Result getDevices(@RequestBody GetDevicesReqDto devicesReqDto){
+    public Result getDevices(){
+//        List<GetDevicesRespDto> list = deviceService.getDevices();
 
-
-        return null;
+        return Result.ok();
     }
 }
